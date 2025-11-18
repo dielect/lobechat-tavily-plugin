@@ -1,78 +1,438 @@
+<div align="center">
+
+<img src="./public/logo.png" width="160" height="160" alt="Tavily 搜索插件">
+
 # LobeChat Tavily AI 搜索插件
 
-<p align="center">
-  <img src="./public/logo.png" height="128" alt="LobeChat Tavily AI 搜索插件 Logo">
-</p>
+**🔍 为 LobeChat 提供 AI 驱动的实时网络搜索引擎**
 
-<h3 align="center">
-  增强 LobeChat 的实时 AI 驱动网络搜索功能，使用 Tavily AI Search API<br>
-</br>
-  <img src="./public/example.png" height="128" alt="LobeChat Tavily AI 搜索插件示例">
-</h3>
+[![][vercel-shield]][vercel-url]
+[![][license-shield]][license-url]
+[![][github-stars-shield]][github-stars-url]
+[![][github-forks-shield]][github-forks-url]
 
-## 🌟 为什么选择 Tavily AI 搜索插件用于 LobeChat
-- 赋予您的AI应用实时、精确的搜索结果，专为LLMs和RAG定制。
-- 提升您的AI，使用专为LLMs定制的搜索引擎。提供快速准确的结果，减少幻觉，以实现更好的决策。
-  
-`官方每个月 1000 次免费搜索，无需信用卡.`
+[English](./README.md) · [简体中文](./README.zh-CN.md)
+
+**为您的 AI 对话赋能智能、实时的网络搜索能力**
+
+[快速开始](#-快速开始) · [核心特性](#-核心特性) · [部署指南](#-部署指南) · [技术文档](#-技术文档)
+
+<img src="./public/example.png" width="800" alt="示例截图">
+
+</div>
+
+<br/>
+
+## 📖 目录
+
+- [项目概述](#-项目概述)
+- [核心特性](#-核心特性)
+- [快速开始](#-快速开始)
+- [部署指南](#-部署指南)
+- [技术栈](#-技术栈)
+- [API 参考](#-api-参考)
+- [开发路线图](#-开发路线图)
+- [参与贡献](#-参与贡献)
+- [开源协议](#-开源协议)
+- [致谢](#-致谢)
+
+<br/>
+
+## 🌟 项目概述
+
+**LobeChat Tavily AI 搜索插件**将 [Tavily AI](https://tavily.com/) 的尖端搜索 API 无缝集成到 [LobeChat](https://github.com/lobehub/lobe-chat) 中，将您的 AI 助手转变为具有实时网络信息访问能力的智能研究伙伴。
+
+### 为什么选择 Tavily AI 搜索?
+
+<table>
+<tr>
+<td width="50%">
+
+**🎯 专为 LLM 优化**
+- 专门为语言模型格式化的搜索结果
+- 通过验证数据减少 AI 幻觉
+- 增强上下文以实现更好的决策
+
+</td>
+<td width="50%">
+
+**⚡ 极速响应**
+- 亚秒级响应时间
+- 实时信息检索
+- 高效的 API 性能
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+**💎 开发者友好**
+- 每月 1,000 次免费搜索
+- 无需信用卡
+- 简单的集成流程
+
+</td>
+<td width="50%">
+
+**🔒 隐私与安全**
+- 支持私有化部署
+- 安全的 API 密钥管理
+- 完全控制数据流
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+## ✨ 核心特性
+
+- **🔍 智能搜索**: 利用专为 LLM 应用设计的 Tavily AI 优化搜索引擎
+- **📊 丰富结果**: 获取全面、结构化的搜索结果和相关上下文
+- **🎨 精美界面**: 使用 Next.js 15 和 React 19 构建的现代化响应式界面
+- **⚙️ 轻松配置**: 简单的设置流程和直观的设置管理
+- **🚀 一键部署**: 在 Vercel 上秒级部署您自己的实例
+- **🔐 默认安全**: API 密钥加密和安全凭证管理
+- **🌐 多语言支持**: 支持中英文界面
+- **📱 响应式设计**: 为桌面和移动体验进行优化
+
+<br/>
 
 ## 🚀 快速开始
 
-### 第一步：获取 API 密钥
+### 前提条件
 
-1. 访问 [Tavily 官网](https://tavily.com/) 注册账号。
+开始之前,请确保您拥有:
+- [LobeChat](https://lobehub.com/) 实例(云端或自托管)
+- [Tavily API](https://tavily.com/) 账户
 
-2. 在主页创建 **API Keys**。
+### 第一步: 获取 Tavily API 密钥
 
-3. 复制生成的 API 密钥备用。
+1. **注册账号**: 访问 [tavily.com](https://tavily.com/) 并创建免费账户
+2. **生成密钥**: 导航到您的控制面板并创建新的 API 密钥
+3. **保存密钥**: 复制并安全存储您的 API 密钥
 
-### 第二步：安装插件
+> 💡 **提示**: 您可以获得**每月 1,000 次免费搜索**,无需信用卡!
 
-在 LobeChat 中操作：
+### 第二步: 在 LobeChat 中安装插件
 
-1. 点击 **插件商店** -> **自定义插件** -> **编辑安装文件**。
+#### 方案 A: 使用官方部署
 
-2. 在**描述文件 URL** 添加 `https://lobe-plugin.composere.com/manifest.json`。
+1. 打开您的 LobeChat 实例
+2. 导航到**插件商店** → **自定义插件** → **编辑安装文件**
+3. 在**描述文件 URL** 中添加以下 URL:
+   ```
+   https://lobe-plugin.composere.com/manifest.json
+   ```
+4. 点击**安装插件**
+5. 在插件设置中输入您的 Tavily API 密钥
 
-3. 点击**安装插件**。
+#### 方案 B: 部署您自己的实例
 
-注意：`https://lobe-plugin.composere.com/manifest.json` 部署在 Vercel 上，如果你想私有化部署，参考下面教程。
+为了增强安全性和自定义能力,[部署您自己的实例](#-部署指南)。
 
-## ⚙️ 私有化部署
+### 第三步: 开始搜索
 
-如果你担心部署的公共 API 接口会泄露你的 API key，你可以 fork 本项目后自行部署，参考以下步骤：
+1. 在 LobeChat 中开始新对话
+2. 启用 Tavily 搜索插件
+3. 提出需要实时信息的问题
+4. 观看您的 AI 助手检索和分析当前的网络数据
 
-1. fork 本项目后，Vercel 一键部署。
+<br/>
 
-2. 修改 `manifest.json` 文件中的 `url` 字段中的 `https://lobe-plugin.composere.com` 为你的自部署域名。
+## 🛠 部署指南
 
-3. 修改 `manifest.json` 文件中的 `ui` 字段中的 `https://lobe-plugin.composere.com` 为你的自部署域名。
+### 部署到 Vercel (推荐)
 
-4. 目前走的是官方网关，如果你想自定义网关，参考 `manifest-dev.json` 配置文件，需要修改 `gateway` 字段中的 `http://localhost:3000` 为你的自部署域名。
+[![使用 Vercel 部署](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/dielect/lobechat-tavily-plugin)
 
-## 🎨 即将推出的功能
+1. **Fork 并部署**
+   ```bash
+   # Fork 此仓库
+   # 点击上方的 "Deploy to Vercel" 按钮
+   # 按照部署向导操作
+   ```
 
-1. **Tavily API 参数扩展支持**
-   - 搜索类型自定义（网页搜索、新闻搜索等）
-   - 结果最大长度配置
-   - 搜索响应格式优化
-   - 高级筛选选项
+2. **配置您的实例**
 
-2. **增强用户界面**
-   - ~~结果预览功能~~
+   更新 `public/manifest.json`:
+   ```json
+   {
+     "api": [{
+       "url": "https://YOUR_DOMAIN.vercel.app/api/tavily"
+     }],
+     "ui": {
+       "url": "https://YOUR_DOMAIN.vercel.app/search"
+     }
+   }
+   ```
 
-3. **性能优化**
-   - 缓存机制
-   - 响应速度提升
+3. **在 LobeChat 中安装**
+
+   使用您的自定义 manifest URL:
+   ```
+   https://YOUR_DOMAIN.vercel.app/manifest.json
+   ```
+
+### 高级: 自定义网关配置
+
+对于想要自定义 API 网关的高级用户:
+
+1. 参考 `public/manifest-dev.json` 作为模板
+2. 更新 `gateway` 字段:
+   ```json
+   {
+     "gateway": "https://YOUR_CUSTOM_GATEWAY.com"
+   }
+   ```
+
+### 本地开发
+
+```bash
+# 克隆仓库
+git clone https://github.com/dielect/lobechat-tavily-plugin.git
+cd lobechat-tavily-plugin
+
+# 安装依赖
+npm install
+
+# 运行开发服务器
+npm run dev
+
+# 构建生产版本
+npm run build
+
+# 启动生产服务器
+npm start
+```
+
+<br/>
+
+## 🔧 技术栈
+
+本插件采用现代前沿技术构建:
+
+| 类别 | 技术 |
+|----------|-------------|
+| **框架** | Next.js 15.1.7, React 19 |
+| **语言** | TypeScript 5 |
+| **样式** | Tailwind CSS 3.4, tailwindcss-animate |
+| **动画** | Framer Motion 12.4 |
+| **UI 组件** | Radix UI, Lucide React |
+| **API 集成** | Tavily Core SDK 0.3.1 |
+| **LobeHub SDK** | @lobehub/chat-plugin-sdk, @lobehub/chat-plugins-gateway |
+| **构建工具** | Turbopack (Next.js) |
+
+### 架构概览
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                      LobeChat                           │
+│  ┌───────────────────────────────────────────────────┐  │
+│  │           插件接口                                 │  │
+│  └────────────────────┬──────────────────────────────┘  │
+└───────────────────────┼─────────────────────────────────┘
+                        │
+                        │ 插件 SDK
+                        │
+┌───────────────────────▼─────────────────────────────────┐
+│          Tavily 搜索插件 (本项目)                        │
+│  ┌─────────────────────────────────────────────────┐    │
+│  │  Next.js API 路由 (/api/tavily)                │    │
+│  │  ┌───────────────────────────────────────────┐ │    │
+│  │  │  身份验证与验证                            │ │    │
+│  │  └────────────────┬──────────────────────────┘ │    │
+│  │                   │                            │    │
+│  │  ┌────────────────▼──────────────────────────┐ │    │
+│  │  │  Tavily API 集成                          │ │    │
+│  │  └────────────────┬──────────────────────────┘ │    │
+│  └───────────────────┼─────────────────────────────┘    │
+│                      │                                   │
+│  ┌───────────────────▼─────────────────────────────┐    │
+│  │  UI 组件 (/search)                              │    │
+│  │  • 结果展示                                     │    │
+│  │  • 交互界面                                     │    │
+│  └─────────────────────────────────────────────────┘    │
+└───────────────────────┬─────────────────────────────────┘
+                        │
+                        │ Tavily API
+                        │
+┌───────────────────────▼─────────────────────────────────┐
+│                  Tavily AI 搜索 API                     │
+│              https://api.tavily.com                     │
+└─────────────────────────────────────────────────────────┘
+```
+
+<br/>
+
+## 📚 API 参考
+
+### 网络搜索端点
+
+**端点**: `POST /api/tavily`
+
+**描述**: 使用 Tavily 搜索引擎 API 执行高级网络搜索。
+
+**参数**:
+
+| 参数 | 类型 | 必需 | 描述 |
+|-----------|------|----------|-------------|
+| `query` | string | ✅ 是 | 要查找的搜索查询或关键词 |
+
+**请求示例**:
+
+```typescript
+const response = await fetch('https://lobe-plugin.composere.com/api/tavily', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer YOUR_API_KEY'
+  },
+  body: JSON.stringify({
+    query: '2025年最新AI发展'
+  })
+});
+
+const data = await response.json();
+```
+
+**响应格式**:
+
+```typescript
+interface SearchResult {
+  results: Array<{
+    title: string;
+    url: string;
+    content: string;
+    score: number;
+  }>;
+  query: string;
+  responseTime: number;
+}
+```
+
+<br/>
+
+## 🗺 开发路线图
+
+### 🎯 计划功能
+
+- [ ] **增强 Tavily API 集成**
+  - [ ] 支持多种搜索类型(网页、新闻、学术)
+  - [ ] 可配置结果长度和格式
+  - [ ] 高级过滤和排序选项
+  - [ ] 特定领域搜索能力
+
+- [ ] **UI/UX 改进**
+  - [x] ~~带缩略图的丰富结果预览~~
+  - [ ] 搜索历史管理
+  - [ ] 收藏结果书签
+  - [ ] 导出结果到多种格式
+
+- [ ] **性能增强**
+  - [ ] 智能缓存机制
+  - [ ] 请求防抖和节流
+  - [ ] 优化响应时间
+  - [ ] 渐进式结果加载
+
+- [ ] **开发者体验**
+  - [ ] 全面的 API 文档
+  - [ ] 集成示例和模板
+  - [ ] 测试工具和模拟
+  - [ ] 调试模式和日志选项
+
+- [ ] **企业功能**
+  - [ ] 使用分析和监控
+  - [ ] 速率限制配置
+  - [ ] 多用户 API 密钥管理
+  - [ ] Webhook 通知
+
+<br/>
+
+## 🤝 参与贡献
+
+我们欢迎社区贡献! 无论您是修复错误、改进文档还是提出新功能,您的帮助都将受到赞赏。
+
+### 如何贡献
+
+1. **Fork** 仓库
+2. **创建** 功能分支 (`git checkout -b feature/AmazingFeature`)
+3. **提交** 您的更改 (`git commit -m 'Add some AmazingFeature'`)
+4. **推送** 到分支 (`git push origin feature/AmazingFeature`)
+5. **打开** Pull Request
+
+### 开发指南
+
+- 遵循现有的代码风格和约定
+- 编写清晰、描述性的提交消息
+- 为新功能添加测试
+- 根据需要更新文档
+- 在提交 PR 前确保所有测试通过
+
+### 报告问题
+
+发现错误或有建议? 请[提出 issue](https://github.com/dielect/lobechat-tavily-plugin/issues),包括:
+- 清晰、描述性的标题
+- 问题或功能的详细描述
+- 重现步骤(对于错误)
+- 预期与实际行为
+- 截图或代码示例(如适用)
+
+<br/>
+
+## 📄 开源协议
+
+本项目采用 **MIT 许可证** - 详见 [LICENSE](LICENSE) 文件。
+
+```
+MIT License
+
+Copyright (c) 2025 dielect
+
+特此免费授予任何获得本软件副本和相关文档文件("软件")的人
+在不受限制的情况下处理软件的权利...
+```
+
+<br/>
 
 ## 🙏 致谢
 
-- LobeChat - 出色的AI对话平台
-- Tavily AI - 提供强大的搜索 API
+如果没有这些出色的工具和社区,本项目将无法实现:
 
-## 📝 注意事项
+- **[LobeChat](https://github.com/lobehub/lobe-chat)** - 使本插件成为可能的创新 AI 聊天平台
+- **[Tavily AI](https://tavily.com/)** - 提供强大的 LLM 优化搜索 API
+- **[Vercel](https://vercel.com/)** - 提供无缝部署和托管基础设施
+- **[Next.js](https://nextjs.org/)** - 驱动本应用的 React 框架
+- **[Tailwind CSS](https://tailwindcss.com/)** - 提供精美的响应式设计系统
 
-- 插件需要有效的 Tavily API 密钥才能运行。
-- 确保 API 密钥安全，切勿提交到版本控制系统中。
+### 特别感谢
 
-<p align="center">为 LobeChat 社区用 ❤️ 制作</p>
+- 所有帮助改进此插件的贡献者
+- LobeChat 社区的支持和反馈
+- 提供宝贵见解的早期采用者和测试人员
+
+<br/>
+
+---
+
+<div align="center">
+
+### 用 ❤️ 为 LobeChat 社区制作
+
+**[⬆ 回到顶部](#lobechat-tavily-ai-搜索插件)**
+
+[![][back-to-top]](#readme)
+
+</div>
+
+<!-- 链接组 -->
+
+[vercel-shield]: https://img.shields.io/badge/Vercel-已部署-black?style=flat&logo=vercel
+[vercel-url]: https://vercel.com
+[license-shield]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat
+[license-url]: ./LICENSE
+[github-stars-shield]: https://img.shields.io/github/stars/dielect/lobechat-tavily-plugin?style=social
+[github-stars-url]: https://github.com/dielect/lobechat-tavily-plugin/stargazers
+[github-forks-shield]: https://img.shields.io/github/forks/dielect/lobechat-tavily-plugin?style=social
+[github-forks-url]: https://github.com/dielect/lobechat-tavily-plugin/network/members
+[back-to-top]: https://img.shields.io/badge/-回到顶部-black?style=flat-square
